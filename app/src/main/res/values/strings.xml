@@ -1,0 +1,41 @@
+<resources>
+    <string name="app_name">ExpressSign</string>
+
+    <string name="title_login_page">Login Accoount</string>
+    <string name="login">Login</string>
+    <string name="massage_login_page">Masukkan Email dan Password</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="register">Register</string>
+    <string name="name">Nama</string>
+    <string name="title_signup_page">Sign Up</string>
+    <string name="title_activity_main2">MainActivity2</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="welcome">HI Welcome !!</string>
+    <string name="face_activity">Face Detection</string>
+    <string name="hands_activity">Hands Detection</string>
+    <string name="email_edit_text">Masukkan Email dengan benar</string>
+    <string name="password_edit_text">Masukkan 8 password</string>
+
+    <string name="caption_main">Yuk nikmati fitur pendeteksi Bahasa Isyarat menggunakan tangan dan Ekpresi Emosi lewat wajah</string>
+    <string name="caption_hand">Penasaran dengan fitur Deteksi bahasa isyarat ? yuk langsung coba saja </string>
+    <string name="caption_face">Penasaran untuk Deteksi Emosi wajah kalian? yuk langsung coba saja </string>
+    <string name="hand">Sign Hand</string>
+    <string name="face">Face Emotion </string>
+
+    <string name="camera">Camera</string>
+    <string name="start_detecthand">Start Hand</string>
+    <string name="start_detectface">Start Face</string>
+    <string name="btnface">Face Emotion => </string>
+    <string name="btnhand">Hand Gesture => </string>
+    <string name="hslhand">Gesture </string>
+    <string name="infoface">Emotion</string>
+    <string name="hslface">Result</string>
+    <string name="gallery">Gallery</string>
+    <string name="history">History</string>
+    <string name="type_language">Sign Language</string>
+    <string name="timeadd">date timestamp</string>
+    <string name="detect_data">Angry\n</string>
+</resources>
