@@ -7,8 +7,10 @@
     <color name="background">#E7F4FE</color>
     <color name="gray">#494F55</color>
     <color name="purple_dark">#32174D</color>
+    <color name="navy_bg">#1c1c84</color>
     <color name="black_cool">#151922</color>
     <color name="warna_bg">#343432</color>
+    <color name="warna_text">#FF000000</color>
 
     <color name="Primary">#32174D</color>
     <color name="Accent">#000000</color>

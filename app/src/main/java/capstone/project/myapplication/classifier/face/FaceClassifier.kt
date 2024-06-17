@@ -25,9 +25,9 @@ class FaceClassifier(private val context: Context) {
     private val firebaseUser: FirebaseUser? = firebaseAuth.currentUser
 
     private val client = OkHttpClient.Builder()
-        .connectTimeout(10, TimeUnit.SECONDS)
-        .readTimeout(5, TimeUnit.SECONDS)
-        .writeTimeout(5, TimeUnit.SECONDS)
+        .connectTimeout(20, TimeUnit.SECONDS)
+        .readTimeout(20, TimeUnit.SECONDS)
+        .writeTimeout(20, TimeUnit.SECONDS)
         .build()
 
     private var cachedToken: String? = null
@@ -51,7 +51,7 @@ class FaceClassifier(private val context: Context) {
 
             Log.d("FaceClassifier", "Sending image to API")
 
-            makeApiCall(request, callback, 2)
+            makeApiCall(request, callback, 3)
         }
     }
 
@@ -64,7 +64,7 @@ class FaceClassifier(private val context: Context) {
                 } else {
                     (context as Activity).runOnUiThread {
                         Log.e("FaceClassifier", "API call failed: ${e.message}", e)
-                        callback("Error: API call failed - ${e.message}")
+                        callback("Gagal identifikasi gambar, Silahkan coba lagi")
                     }
                 }
             }
@@ -75,11 +75,11 @@ class FaceClassifier(private val context: Context) {
                         val responseBody = response.body?.string()
                         Log.d("FaceClassifier", "API response: $responseBody")
                         val detectedExpression = parseDetectedExpression(responseBody)
-                        callback(detectedExpression ?: "Error: Empty response from server")
+                        callback(detectedExpression ?: "Gagal identifikasi gambar, Silahkan coba lagi")
                     } else {
                         val errorBody = response.body?.string()
                         Log.e("FaceClassifier", "Failed with HTTP code ${response.code} and message: ${response.message}, error body: $errorBody")
-                        callback("Error: Server encountered an issue. Please try again later.")
+                        callback("Gagal identifikasi gambar, Silahkan coba lagi")
                     }
                 }
             }

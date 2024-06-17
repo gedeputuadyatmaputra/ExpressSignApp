@@ -10,6 +10,7 @@
     <color name="purple_dark">#32174D</color>
     <color name="black_cool">#151922</color>
     <color name="warna_bg">#343432</color>
+    <color name="warna_text">#FF000000</color>
 
     <color name="Primary">#32174D</color>
     <color name="Accent">#000000</color>
