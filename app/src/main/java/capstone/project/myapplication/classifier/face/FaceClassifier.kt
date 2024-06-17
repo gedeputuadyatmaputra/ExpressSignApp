@@ -17,12 +17,20 @@ import okhttp3.RequestBody
 import okhttp3.Response
 import org.json.JSONObject
 import java.io.ByteArrayOutputStream
+import java.util.concurrent.TimeUnit
 
 class FaceClassifier(private val context: Context) {
 
-    private val client = OkHttpClient()
     private val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
     private val firebaseUser: FirebaseUser? = firebaseAuth.currentUser
+
+    private val client = OkHttpClient.Builder()
+        .connectTimeout(10, TimeUnit.SECONDS)
+        .readTimeout(5, TimeUnit.SECONDS)
+        .writeTimeout(5, TimeUnit.SECONDS)
+        .build()
+
+    private var cachedToken: String? = null
 
     fun classify(bitmap: Bitmap, callback: (String) -> Unit) {
         val byteArrayOutputStream = ByteArrayOutputStream()
@@ -43,30 +51,39 @@ class FaceClassifier(private val context: Context) {
 
             Log.d("FaceClassifier", "Sending image to API")
 
-            client.newCall(request).enqueue(object : Callback {
-                override fun onFailure(call: Call, e: IOException) {
+            makeApiCall(request, callback, 2)
+        }
+    }
+
+    private fun makeApiCall(request: Request, callback: (String) -> Unit, retries: Int) {
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                if (retries > 0) {
+                    Log.d("FaceClassifier", "Retrying API call, attempts left: $retries")
+                    makeApiCall(request, callback, retries - 1)
+                } else {
                     (context as Activity).runOnUiThread {
                         Log.e("FaceClassifier", "API call failed: ${e.message}", e)
                         callback("Error: API call failed - ${e.message}")
                     }
                 }
+            }
 
-                override fun onResponse(call: Call, response: Response) {
-                    (context as Activity).runOnUiThread {
-                        if (response.isSuccessful) {
-                            val responseBody = response.body?.string()
-                            Log.d("FaceClassifier", "API response: $responseBody")
-                            val detectedExpression = parseDetectedExpression(responseBody)
-                            callback(detectedExpression ?: "Error: Empty response from server")
-                        } else {
-                            val errorBody = response.body?.string()
-                            Log.e("FaceClassifier", "Failed with HTTP code ${response.code} and message: ${response.message}, error body: $errorBody")
-                            callback("Error: Server encountered an issue. Please try again later.")
-                        }
+            override fun onResponse(call: Call, response: Response) {
+                (context as Activity).runOnUiThread {
+                    if (response.isSuccessful) {
+                        val responseBody = response.body?.string()
+                        Log.d("FaceClassifier", "API response: $responseBody")
+                        val detectedExpression = parseDetectedExpression(responseBody)
+                        callback(detectedExpression ?: "Error: Empty response from server")
+                    } else {
+                        val errorBody = response.body?.string()
+                        Log.e("FaceClassifier", "Failed with HTTP code ${response.code} and message: ${response.message}, error body: $errorBody")
+                        callback("Error: Server encountered an issue. Please try again later.")
                     }
                 }
-            })
-        }
+            }
+        })
     }
 
     private fun parseDetectedExpression(responseBody: String?): String? {
@@ -80,9 +97,15 @@ class FaceClassifier(private val context: Context) {
     }
 
     private fun getToken(callback: (String) -> Unit) {
+        if (cachedToken != null) {
+            callback(cachedToken!!)
+            return
+        }
+
         firebaseUser?.getIdToken(true)?.addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 val token = task.result?.token
+                cachedToken = token
                 callback(token ?: "")
             } else {
                 Log.e("TOKEN_ERROR", "Failed to get token", task.exception)
