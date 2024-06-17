@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">ExpressSign</string>
-    <string name="pro">Bintang 1</string>
 
     <string name="title_login_page">Login Accoount</string>
     <string name="login">Login</string>
