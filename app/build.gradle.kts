@@ -14,7 +14,7 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-        buildConfigField("String", "BASE_URL", "\"https://express-app-4s7pae4xgq-et.a.run.app/api/\"")
+
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -37,7 +37,6 @@ android {
 
     buildFeatures {
         viewBinding = true
-        buildConfig = true
         mlModelBinding = true
     }
 }

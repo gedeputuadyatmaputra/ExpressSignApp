@@ -75,6 +75,7 @@ class LoginActivity : AppCompatActivity() {
                     if (userId != null) {
                         saveUserIdToPreferences(userId)
                     }
+                    progressBar.visibility = View.VISIBLE
                     Toast.makeText(applicationContext, "Login Successful", Toast.LENGTH_SHORT).show()
                     val intent = Intent(applicationContext, MainActivity::class.java)
                     startActivity(intent)

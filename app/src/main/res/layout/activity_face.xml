@@ -15,7 +15,6 @@
         android:src="@drawable/imgface"
         android:transitionName="image_transition"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.475"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -24,60 +23,55 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="120dp"
         android:text="@string/face"
-        android:textColor="@color/navy"
+        android:textColor="@color/purple_dark"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.448"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="320dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="18dp"
         android:layout_marginTop="12dp"
         android:fontFamily="@font/poppins_extrabold"
         android:textColor="@color/purple_dark"
+        android:gravity="center"
         android:text="@string/caption_face"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.41"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_startface"
-        android:layout_width="150dp"
+        android:layout_width="0dp"
         android:layout_height="60dp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="70dp"
-        android:textColor="@color/white"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="40dp"
         android:backgroundTint="@color/navy"
         android:text="@string/start_detectface"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.066"
+        app:layout_constraintHorizontal_bias="0.214"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/Btn_hand"
-        android:layout_width="200dp"
+        android:layout_width="0dp"
         android:layout_height="60dp"
         android:layout_marginStart="40dp"
         android:layout_marginTop="28dp"
-        android:layout_marginEnd="70dp"
-        android:textColor="@color/white"
+        android:layout_marginEnd="40dp"
         android:backgroundTint="@color/navy"
         android:text="@string/btnhand"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.099"
+        app:layout_constraintHorizontal_bias="0.265"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_startface"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/button_startface" />
 </androidx.constraintlayout.widget.ConstraintLayout>

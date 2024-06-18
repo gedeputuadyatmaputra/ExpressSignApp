@@ -64,6 +64,7 @@ class RegisterActivity : AppCompatActivity() {
                     if (userId != null) {
                         saveUserIdToDatabase(userId)
                     }
+                    progressBar.visibility = View.VISIBLE
                     Toast.makeText(this@RegisterActivity, "Account created.", Toast.LENGTH_SHORT).show()
                     mAuth.signOut()
                     val intent = Intent(this@RegisterActivity, LoginActivity::class.java)

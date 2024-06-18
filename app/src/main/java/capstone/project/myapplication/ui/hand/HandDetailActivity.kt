@@ -120,7 +120,7 @@ class HandDetailActivity : AppCompatActivity() {
         when (item.itemId) {
             R.id.logout_menu -> {
                 logout()
-                true
+                return true
             }
         }
         return super.onOptionsItemSelected(item)

@@ -28,8 +28,8 @@
     <string name="camera">Camera</string>
     <string name="start_detecthand">Start Hand</string>
     <string name="start_detectface">Start Face</string>
-    <string name="btnface">Face Emotion => </string>
-    <string name="btnhand">Hand Gesture => </string>
+    <string name="btnface">Face Emotion</string>
+    <string name="btnhand">Hand Gesture</string>
     <string name="hslhand">Gesture </string>
     <string name="infoface">Emotion</string>
     <string name="hslface">Result</string>
