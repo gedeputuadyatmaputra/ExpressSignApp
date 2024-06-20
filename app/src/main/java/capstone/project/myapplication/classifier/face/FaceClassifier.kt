@@ -7,14 +7,12 @@ import android.util.Log
 import androidx.datastore.core.IOException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import okhttp3.Call
-import okhttp3.Callback
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.MultipartBody
-import okhttp3.OkHttpClient
-import okhttp3.Request
-import okhttp3.RequestBody
-import okhttp3.Response
 import org.json.JSONObject
 import java.io.ByteArrayOutputStream
 import java.util.concurrent.TimeUnit
@@ -33,25 +31,27 @@ class FaceClassifier(private val context: Context) {
     private var cachedToken: String? = null
 
     fun classify(bitmap: Bitmap, callback: (String) -> Unit) {
-        val byteArrayOutputStream = ByteArrayOutputStream()
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream)
-        val byteArray = byteArrayOutputStream.toByteArray()
+        CoroutineScope(Dispatchers.IO).launch {
+            val byteArrayOutputStream = ByteArrayOutputStream()
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 80, byteArrayOutputStream) // Compress at 80% quality
+            val byteArray = byteArrayOutputStream.toByteArray()
 
-        val requestBody = MultipartBody.Builder()
-            .setType(MultipartBody.FORM)
-            .addFormDataPart("image", "image.jpg", RequestBody.create("image/jpeg".toMediaTypeOrNull(), byteArray))
-            .build()
-
-        getToken { token ->
-            val request = Request.Builder()
-                .url("https://express-app-4s7pae4xgq-et.a.run.app/api/detect-expression")
-                .post(requestBody)
-                .addHeader("Authorization", "Bearer $token")
+            val requestBody = MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("image", "image.jpg", RequestBody.create("image/jpeg".toMediaTypeOrNull(), byteArray))
                 .build()
 
-            Log.d("FaceClassifier", "Sending image to API")
+            getToken { token ->
+                val request = Request.Builder()
+                    .url("https://express-app-4s7pae4xgq-et.a.run.app/api/detect-expression")
+                    .post(requestBody)
+                    .addHeader("Authorization", "Bearer $token")
+                    .build()
 
-            makeApiCall(request, callback, 3)
+                Log.d("FaceClassifier", "Sending image to API")
+
+                makeApiCall(request, callback, 3)
+            }
         }
     }
 

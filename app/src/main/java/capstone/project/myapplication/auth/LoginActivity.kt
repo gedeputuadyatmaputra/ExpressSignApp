@@ -17,9 +17,9 @@ import com.google.firebase.auth.FirebaseAuth
 
 class LoginActivity : AppCompatActivity() {
 
-    private lateinit var mAuth : FirebaseAuth
-    private lateinit var editTextEmail : EditText
-    private lateinit var editTextPassword : EditText
+    private lateinit var mAuth: FirebaseAuth
+    private lateinit var editTextEmail: EditText
+    private lateinit var editTextPassword: EditText
     private lateinit var progressBar: ProgressBar
     private lateinit var buttonLogin: Button
     private lateinit var buttonRegis: Button
@@ -33,6 +33,7 @@ class LoginActivity : AppCompatActivity() {
             finish()
         }
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -57,13 +58,13 @@ class LoginActivity : AppCompatActivity() {
             val password = editTextPassword.text.toString()
 
             if (TextUtils.isEmpty(email)) {
-                Toast.makeText(this@LoginActivity, "Enter Email", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@LoginActivity, "Fill Your Email", Toast.LENGTH_SHORT).show()
                 progressBar.visibility = View.GONE
                 return@setOnClickListener
             }
 
             if (TextUtils.isEmpty(password)) {
-                Toast.makeText(this@LoginActivity, "Enter Password", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@LoginActivity, "Fill Your Password", Toast.LENGTH_SHORT).show()
                 progressBar.visibility = View.GONE
                 return@setOnClickListener
             }
@@ -81,11 +82,12 @@ class LoginActivity : AppCompatActivity() {
                     startActivity(intent)
                     finish()
                 } else {
-                    Toast.makeText(this@LoginActivity, "Authentication failed.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@LoginActivity, "Email dan password Anda salah", Toast.LENGTH_SHORT).show()
                 }
             }
         }
     }
+
     private fun saveUserIdToPreferences(userId: String) {
         val sharedPreferences: SharedPreferences = getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()

@@ -12,7 +12,7 @@
         android:id="@+id/imageView"
         android:layout_width="300dp"
         android:layout_height="300dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:src="@drawable/welcome"
         android:transitionName="image_transition"
         app:layout_constraintBottom_toTopOf="@+id/caption"
@@ -52,36 +52,36 @@
         android:layout_marginEnd="16dp"/>
 
     <Button
-        android:id="@+id/Btn_face"
+        android:id="@+id/Btn_hands"
         android:layout_width="0dp"
         android:layout_height="64dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="14dp"
         android:layout_marginEnd="32dp"
         android:backgroundTint="@color/purple_dark"
         android:fontFamily="@font/poppins_extrabold"
-        android:text="@string/face_activity"
+        android:text="@string/hands_activity"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/caption2" />
 
     <Button
-        android:id="@+id/Btn_hands"
+        android:id="@+id/Btn_face"
         android:layout_width="0dp"
         android:layout_height="64dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="32dp"
         android:backgroundTint="@color/purple_dark"
         android:fontFamily="@font/poppins_extrabold"
-        android:text="@string/hands_activity"
+        android:text="@string/face_activity"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Btn_face"
+        app:layout_constraintTop_toBottomOf="@+id/Btn_hands"
         app:layout_constraintVertical_bias="0.14" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

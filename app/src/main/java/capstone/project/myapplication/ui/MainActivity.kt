@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() {
         buttonface = findViewById(R.id.Btn_face)
         buttonhand = findViewById(R.id.Btn_hands)
         firebaseAuth = FirebaseAuth.getInstance()
+
         buttonface.setOnClickListener {
             val intent = Intent(this, FaceActivity::class.java)
             startActivity(intent)
@@ -49,7 +50,7 @@ class MainActivity : AppCompatActivity() {
         when (item.itemId) {
             R.id.logout_menu ->{
                 logout()
-                true
+                return true
             }
         }
         return super.onOptionsItemSelected(item)

@@ -15,9 +15,9 @@ import com.google.firebase.database.FirebaseDatabase
 
 class RegisterActivity : AppCompatActivity() {
 
-    private lateinit var mAuth : FirebaseAuth
-    private lateinit var editTextEmail : EditText
-    private lateinit var editTextPassword : EditText
+    private lateinit var mAuth: FirebaseAuth
+    private lateinit var editTextEmail: EditText
+    private lateinit var editTextPassword: EditText
     private lateinit var progressBar: ProgressBar
     private lateinit var buttonLogin: Button
     private lateinit var buttonRegis: Button
@@ -45,6 +45,12 @@ class RegisterActivity : AppCompatActivity() {
             val email = editTextEmail.text.toString()
             val password = editTextPassword.text.toString()
 
+            if (TextUtils.isEmpty(email) && TextUtils.isEmpty(password)) {
+                Toast.makeText(this@RegisterActivity, "Please Input Email and Password", Toast.LENGTH_SHORT).show()
+                progressBar.visibility = View.GONE
+                return@setOnClickListener
+            }
+
             if (TextUtils.isEmpty(email)) {
                 Toast.makeText(this@RegisterActivity, "Enter Email", Toast.LENGTH_SHORT).show()
                 progressBar.visibility = View.GONE
@@ -65,17 +71,18 @@ class RegisterActivity : AppCompatActivity() {
                         saveUserIdToDatabase(userId)
                     }
                     progressBar.visibility = View.VISIBLE
-                    Toast.makeText(this@RegisterActivity, "Account created.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@RegisterActivity, "Account created", Toast.LENGTH_SHORT).show()
                     mAuth.signOut()
                     val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
                     startActivity(intent)
                     finish()
                 } else {
-                    Toast.makeText(this@RegisterActivity, "Authentication failed.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@RegisterActivity, "Register Account Failed", Toast.LENGTH_SHORT).show()
                 }
             }
         }
     }
+
     private fun saveUserIdToDatabase(userId: String) {
         val database = FirebaseDatabase.getInstance()
         val usersRef = database.getReference("users")

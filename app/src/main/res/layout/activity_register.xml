@@ -40,7 +40,7 @@
         android:layout_marginTop="20dp"
         android:text="@string/email"
         android:textColor="@color/white"
-        android:textSize="24dp"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_Register" />
 
@@ -53,7 +53,7 @@
         android:layout_marginStart="32dp"
         android:inputType="textEmailAddress"
         android:background="@drawable/ic_field_login_register"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -80,7 +80,7 @@
         android:layout_marginStart="32dp"
         android:inputType="textPassword"
         android:background="@drawable/ic_field_login_register"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
